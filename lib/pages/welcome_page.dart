@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel_app/misc/colors.dart';
 import 'package:flutter_travel_app/widgets/app_large_text.dart';
 import 'package:flutter_travel_app/widgets/app_text.dart';
+import 'package:flutter_travel_app/widgets/responsive_button.dart';
 
 class WelcomePage extends StatefulWidget {
   WelcomePage({Key? key}) : super(key: key);
@@ -36,6 +37,7 @@ class _WelcomePageState extends State<WelcomePage> {
             child: Container(
               margin: const EdgeInsets.only(top: 150, left: 20, right: 20),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,8 +47,8 @@ class _WelcomePageState extends State<WelcomePage> {
                         text: "Mountain",
                         size: 30,
                       ),
-                      SizedBox(height: 20),
-                      Container(
+                      const SizedBox(height: 20),
+                      SizedBox(
                         width: 250,
                         child: AppText(
                           text:
@@ -55,7 +57,25 @@ class _WelcomePageState extends State<WelcomePage> {
                           size: 14,
                         ),
                       ),
+                      const SizedBox(height: 20),
+                      ResponsiveButton()
                     ],
+                  ),
+                  Column(
+                    children: List.generate(
+                      images.length,
+                      (indexDots) => Container(
+                        margin: const EdgeInsets.only(bottom: 3),
+                        height: index == indexDots ? 25 : 8,
+                        width: 8,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: index == indexDots
+                              ? AppColors.mainColor
+                              : AppColors.mainColor.withOpacity(0.3),
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),
