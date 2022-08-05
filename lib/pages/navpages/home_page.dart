@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    TabController _tabController = TabController(length: 3, vsync: this);
+    TabController tabController = TabController(length: 3, vsync: this);
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -48,13 +48,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 alignment: Alignment.centerLeft,
                 child: TabBar(
                   labelPadding: const EdgeInsets.only(left: 20, right: 20),
-                  controller: _tabController,
+                  controller: tabController,
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.grey,
                   isScrollable: true,
                   indicatorSize: TabBarIndicatorSize.label,
-                  indicator:
-                      CircleTabIndicator(color: AppColors.mainColor, radius: 4),
+                  indicator: const CircleTabIndicator(
+                    color: AppColors.mainColor,
+                    radius: 4,
+                  ),
                   tabs: const [
                     Tab(text: "Places"),
                     Tab(text: "Inspiration"),
@@ -67,11 +69,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               height: 300,
               width: double.maxFinite,
               child: TabBarView(
-                controller: _tabController,
+                controller: tabController,
                 children: [
-                  Text("HI"),
-                  Text("There"),
-                  Text("Bye"),
+                  Container(
+                    width: 200,
+                    height: 300,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white,
+                      image: const DecorationImage(
+                        image: AssetImage("assets/img/mountain.jpeg"),
+                      ),
+                    ),
+                  ),
+                  const Text("There"),
+                  const Text("Bye"),
                 ],
               ),
             ),
@@ -84,8 +96,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
 class CircleTabIndicator extends Decoration {
   final Color color;
-  double radius;
-  CircleTabIndicator({required this.color, required this.radius});
+  final double radius;
+  const CircleTabIndicator({required this.color, required this.radius});
   @override
   BoxPainter createBoxPainter([VoidCallback? onChanged]) {
     return _CirclePainter(color: color, radius: radius);
@@ -94,17 +106,17 @@ class CircleTabIndicator extends Decoration {
 
 class _CirclePainter extends BoxPainter {
   final Color color;
-  double radius;
+  final double radius;
   _CirclePainter({required this.color, required this.radius});
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
-    Paint _paint = Paint();
-    _paint.color = color;
-    _paint.isAntiAlias = true;
+    Paint paint = Paint();
+    paint.color = color;
+    paint.isAntiAlias = true;
     final Offset circleOffset = Offset(
       configuration.size!.width / 2 - radius / 2,
-      configuration.size!.height - radius * 2,
+      configuration.size!.height - radius,
     );
-    canvas.drawCircle(offset + circleOffset, radius, _paint);
+    canvas.drawCircle(offset + circleOffset, radius, paint);
   }
 }
