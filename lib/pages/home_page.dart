@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     "balloning.png": "Balloning",
     "hiking.png": "Hiking",
     "kayaking.png": "Kayaking",
-    "Snorking.png": "Snorking",
+    "snorkling.png": "Snorkling",
   };
   @override
   Widget build(BuildContext context) {
