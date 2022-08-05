@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import './my_page.dart';
 import './bar_item_page.dart';
-import './home_page.dart';
+import '../home_page.dart';
 import './search_page.dart';
 
 class MainPage extends StatefulWidget {
