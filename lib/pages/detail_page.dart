@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
+import 'package:flutter_travel_app/misc/colors.dart';
+import 'package:flutter_travel_app/widgets/app_large_text.dart';
+import 'package:flutter_travel_app/widgets/app_text.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
@@ -10,6 +12,7 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  int gottenStars = 3;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +44,7 @@ class _DetailPageState extends State<DetailPage> {
                 ),
                 width: MediaQuery.of(context).size.width *
                     9 /
-                    10, // when in a positioned widget, always use mediaquery instead of dou ble.infinty
+                    10, // when in a positioned widget, always use mediaquery instead of double.infinty
                 child: Row(
                   children: [
                     IconButton(
@@ -64,10 +67,91 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
             Positioned(
-              top: 300,
+              top: 320,
               child: Container(
-                  // width: doub,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                width: MediaQuery.of(context).size.width,
+                height: 500,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
                   ),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        AppLargeText(
+                          text: "Yosemite",
+                          color: Colors.black.withOpacity(0.8),
+                        ),
+                        AppLargeText(
+                          text: "\$ 250",
+                          color: AppColors.mainColor,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.location_on,
+                          color: AppColors.mainColor,
+                        ),
+                        const SizedBox(width: 5),
+                        AppText(
+                          text: "USA, Carlifornia",
+                          color: AppColors.textColor1,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Wrap(
+                          children: List.generate(
+                            5,
+                            (index) {
+                              return Icon(
+                                Icons.star,
+                                color: index < gottenStars
+                                    ? AppColors.starColor
+                                    : AppColors.textColor2,
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 5),
+                        AppText(
+                          text: "($gottenStars.0/5)",
+                          color: AppColors.textColor2,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    AppLargeText(
+                      text: "People",
+                      color: Colors.black.withOpacity(0.8),
+                      size: 20,
+                    ),
+                    const SizedBox(height: 5),
+                    AppText(
+                      text: "Number of people in your group",
+                      color: AppColors.mainTextColor,
+                    ),
+                    Wrap(
+                      children: List.generate(5, (index) {
+                        return Container();
+                      }),
+                    )
+                  ],
+                ),
+              ),
             )
           ],
         ),
