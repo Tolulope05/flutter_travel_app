@@ -155,10 +155,10 @@ class _DetailPageState extends State<DetailPage> {
                         (index) {
                           return InkWell(
                             onTap: () {
-                              print("$index selected");
                               setState(() {
                                 selectedIndex = index;
                               });
+                              print("${selectedIndex + 1} selected");
                             },
                             child: Container(
                               margin: const EdgeInsets.only(right: 10),
