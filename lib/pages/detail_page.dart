@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_travel_app/misc/colors.dart';
+import 'package:flutter_travel_app/widgets/app_button.dart';
 import 'package:flutter_travel_app/widgets/app_large_text.dart';
 import 'package:flutter_travel_app/widgets/app_text.dart';
 
@@ -13,6 +14,7 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   int gottenStars = 3;
+  List<int> integers = [1, 2, 3, 4, 5];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,10 +146,23 @@ class _DetailPageState extends State<DetailPage> {
                       text: "Number of people in your group",
                       color: AppColors.mainTextColor,
                     ),
+                    const SizedBox(height: 10),
                     Wrap(
-                      children: List.generate(5, (index) {
-                        return Container();
-                      }),
+                      children: List.generate(
+                        5,
+                        (index) {
+                          return Container(
+                            margin: const EdgeInsets.only(right: 10),
+                            child: AppButtons(
+                              color: Colors.black,
+                              backgroundColor: AppColors.buttonBackground,
+                              size: 50,
+                              borderColor: AppColors.buttonBackground,
+                              text: integers[index].toString(),
+                            ),
+                          );
+                        },
+                      ),
                     )
                   ],
                 ),
