@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_travel_app/cubit/app_cubit.dart';
 import 'package:flutter_travel_app/cubit/app_cubit_state.dart';
 import 'package:flutter_travel_app/pages/detail_page.dart';
-import 'package:flutter_travel_app/pages/home_page.dart';
 import 'package:flutter_travel_app/pages/welcome_page.dart';
+
+import '../pages/navpages/main_page.dart';
 
 class AppCubitLogics extends StatefulWidget {
   const AppCubitLogics({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _AppCubitLogicsState extends State<AppCubitLogics> {
           );
         }
         if (state is LoadedState) {
-          return const HomePage();
+          return const MainPage();
         }
         if (state is DetailState) {
           return const DetailPage();
